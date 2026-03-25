@@ -1,0 +1,8 @@
+opencv-python
+deepface
+pandas
+customtkinter
+Pillow
+pyttsx3
+tf-keras
+tensorflow
