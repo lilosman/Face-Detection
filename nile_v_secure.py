@@ -11,12 +11,12 @@ import sys
 
 
 
-# --- إعدادات المجلدات ---
+
 FACES_DIR = "stored_faces"
 LOG_FILE = "attendance_log.csv"
 if not os.path.exists(FACES_DIR): os.makedirs(FACES_DIR)
 
-# --- إعداد محرك الصوت ---
+
 engine = pyttsx3.init()
 def speak(text):
     def run_speak():
@@ -26,7 +26,7 @@ def speak(text):
         except: pass
     threading.Thread(target=run_speak, daemon=True).start()
 
-# --- دالة التعامل مع المسارات ---
+
 def resource_path(relative_path):
     try:
         base_path = sys._MEIPASS
@@ -49,11 +49,11 @@ class AttendanceApp(ctk.CTk):
         self.last_name = ""
         self.last_voice_time = datetime.now()
 
-        # --- القائمة الجانبية (Sidebar) ---
+        # --- القائمة الجانبية 
         self.sidebar = ctk.CTkFrame(self, width=240, corner_radius=0)
         self.sidebar.pack(side="left", fill="y")
 
-        # 1. اسم الشركة (NileCortex)
+       
         self.brand_label = ctk.CTkLabel(self.sidebar, text="NileCortex", 
                                        font=("Orbitron", 28, "bold"), 
                                        text_color="#3498db")
@@ -64,7 +64,7 @@ class AttendanceApp(ctk.CTk):
                                      text_color="#95a5a6")
         self.sub_brand.pack(pady=(0, 30))
 
-        # تحميل اللوغو والأيقونة
+
         try:
             self.after(200, lambda: self.iconbitmap(resource_path("nile_icon.ico")))
             self.logo_img = ctk.CTkImage(light_image=Image.open(resource_path("logo.png")),
@@ -87,7 +87,7 @@ class AttendanceApp(ctk.CTk):
                                      command=self.show_dashboard, height=45, fg_color="#2c3e50")
         self.btn_dash.pack(pady=10, padx=20)
 
-        # 3. اسم المطور (عثمان إبراهيم) أسفل القائمة
+        
         self.dev_frame = ctk.CTkFrame(self.sidebar, fg_color="transparent")
         self.dev_frame.pack(side="bottom", pady=40)
         
@@ -96,13 +96,12 @@ class AttendanceApp(ctk.CTk):
         ctk.CTkLabel(self.dev_frame, text="OSMAN IBRAHIM", 
                     font=("Arial", 16, "bold"), text_color="#3498db").pack()
 
-        # الحاوية الرئيسية للعرض
+        # 
         self.main_frame = ctk.CTkFrame(self, corner_radius=15, fg_color="#1e1e1e")
         self.main_frame.pack(side="right", fill="both", expand=True, padx=20, pady=20)
 
         self.show_scanner()
 
-    # --- الدوال الوظيفية (تبقى كما هي تماماً) ---
     def stop_camera(self):
         if self.cap:
             self.cap.release()
